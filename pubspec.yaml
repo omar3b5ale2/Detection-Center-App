@@ -37,6 +37,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bloc: ^8.1.6
   speech_to_text: ^7.0.0
+  smooth_page_indicator: ^1.2.0+3
+  google_fonts: ^6.2.1
+  onboarding: ^4.0.2
+#  google_ml_kit: ^0.19.0
+#  google_mlkit_object_detection: ^0.14.0
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +52,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -61,8 +66,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
+    - assets/images/welcome.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -90,10 +96,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-  assets:
-    - assets/gif/bg.gif
-    - assets/
-    - assets/gif/
-    - assets/images/
-    - assets/images/logo.svg
+#  assets:
+#    - assets/gif/bg.gif
+#    - assets/
+#    - assets/gif/
+#    - assets/images/
+#    - assets/images/logo.svg
 

@@ -2,8 +2,13 @@
 class Assets {
   Assets._();
 
-  static const String assetsGifBg = 'assets/gif/bg.gif';
-  static const String gifBg = 'assets/gif/bg.gif';
-  static const String imagesLogo = 'assets/images/logo.svg';
+  static const String assetsImagesWelcome = 'assets/images/welcome.png';
+  static const String imagesEye = 'assets/images/eye.png';
+  static const String imagesFace = 'assets/images/face.png';
+  static const String imagesIcon = 'assets/images/icon.png';
+  static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesObject = 'assets/images/object.png';
+  static const String imagesVoice = 'assets/images/voice.png';
+  static const String imagesWelcome = 'assets/images/welcome.png';
 
 }
