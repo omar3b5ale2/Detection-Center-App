@@ -10,5 +10,4 @@ class Assets {
   static const String imagesObject = 'assets/images/object.png';
   static const String imagesVoice = 'assets/images/voice.png';
   static const String imagesWelcome = 'assets/images/welcome.png';
-
 }

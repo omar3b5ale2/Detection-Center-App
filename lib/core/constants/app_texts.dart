@@ -1,4 +1,5 @@
 class AppTexts {
+  static const appName = "Detection Center";
   static const firstIntroductionPageTitle = "Welcome!";
   static const firstIntroductionPageDescription =
       "Welcome to Detection Center ";
