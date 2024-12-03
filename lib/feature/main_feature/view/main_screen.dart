@@ -44,4 +44,13 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
+
+  Future<bool> checkPermissions() async {
+    final microphoneStatus = await Permission.microphone.status;
+    final cameraStatus = await Permission.camera.status;
+    final storageStatus = await Permission.storage.status;
+
+    return microphoneStatus.isGranted && cameraStatus.isGranted && storageStatus.isGranted;
+  }
 }
+

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pyramakerz_assement/core/constants/app_texts.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/util/app_colors.dart';
@@ -31,7 +33,7 @@ class BodyOfHomeWidget extends StatelessWidget {
         // Speech recognition UI
         BlocBuilder<SpeechCubit, SpeechState>(
           builder: (context, speechState) {
-            String message = "Press the button to start listening.";
+            String message = AppTexts.startingMessage;
             if (speechState is SpeechListening) {
               message = "Listening...";
             } else if (speechState is SpeechRecognized) {
@@ -45,7 +47,7 @@ class BodyOfHomeWidget extends StatelessWidget {
             }
             return Text(
               message,
-              style: TextStyle(color: AppColors.text, fontSize: 18),
+              style: TextStyle(color: AppColors.text, fontSize: 18.sp),
               textAlign: TextAlign.center,
             );
           },
@@ -68,7 +70,7 @@ class BodyOfHomeWidget extends StatelessWidget {
                 children: detectionState.results.map((result) {
                   return Text(
                     "${result['label']} (${(result['confidence'] * 100).toStringAsFixed(2)}%)",
-                    style: TextStyle(color: AppColors.text, fontSize: 16),
+                    style: TextStyle(color: AppColors.text, fontSize: 16.sp),
                   );
                 }).toList(),
               );

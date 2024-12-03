@@ -1,5 +1,6 @@
 class AppTexts {
   static const appName = "Detection Center";
+  static const startingMessage = "Press the button to start listening.";
   static const firstIntroductionPageTitle = "Welcome!";
   static const firstIntroductionPageDescription =
       "Welcome to Detection Center ";

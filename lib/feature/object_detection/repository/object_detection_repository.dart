@@ -1,8 +1,19 @@
+import 'package:camera/camera.dart';
+
 class DetectionRepository {
-  Future<List<Map<String, dynamic>>> detectObjects() async {
-    return [
-      {"label": "Ball", "confidence": 0.95},
-      {"label": "Cup", "confidence": 0.89},
-    ];
+  CameraController? _cameraController;
+
+  Future<CameraController> getCamera() async {
+    if (_cameraController == null) {
+      final cameras = await availableCameras();
+      _cameraController = CameraController(cameras[0], ResolutionPreset.medium);
+      await _cameraController!.initialize();
+    }
+    return _cameraController!;
+  }
+
+  void disposeCamera() {
+    _cameraController?.dispose();
+    _cameraController = null;
   }
 }
