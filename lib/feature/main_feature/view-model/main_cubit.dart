@@ -9,31 +9,37 @@ class PermissionCubit extends Cubit<PermissionState> {
   // Check permissions on app startup
   Future<void> checkPermissions() async {
     emit(PermissionLoading());
-    final permissionsGranted = await _arePermissionsGranted();
-
-    if (permissionsGranted) {
-      emit(PermissionGranted());
-    } else {
-      emit(PermissionDenied());
+    try {
+      final permissionsGranted = await _arePermissionsGranted();
+      if (permissionsGranted) {
+        emit(PermissionGranted());
+      } else {
+        emit(PermissionDenied());
+      }
+    } catch (e) {
+      emit(PermissionError("Failed to check permissions: ${e.toString()}"));
     }
   }
 
   // Request permissions
   Future<void> requestPermissions() async {
     emit(PermissionLoading());
+    try {
+      final statuses = await [
+        Permission.microphone,
+        Permission.camera,
+        Permission.storage,
+      ].request();
 
-    await [
-      Permission.microphone,
-      Permission.camera,
-      Permission.storage,
-    ].request();
+      final permissionsGranted = statuses.values.every((status) => status.isGranted);
 
-    final permissionsGranted = await _arePermissionsGranted();
-
-    if (permissionsGranted) {
-      emit(PermissionGranted());
-    } else {
-      emit(PermissionDenied());
+      if (permissionsGranted) {
+        emit(PermissionGranted());
+      } else {
+        emit(PermissionDenied());
+      }
+    } catch (e) {
+      emit(PermissionError("Failed to request permissions: ${e.toString()}"));
     }
   }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:pyramakerz_assement/core/config/router/app_route.dart';
 import '../../../core/util/custom_app_bar.dart';
-import '../../home/view/screens/home_screen.dart';
 import '../view-model/main_cubit.dart';
 
 class MainScreen extends StatelessWidget {
@@ -18,9 +18,8 @@ class MainScreen extends StatelessWidget {
           listener: (context, state) {
             if (state is PermissionGranted) {
               // Navigate to HomeScreen when permissions are granted
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const HomeScreen()),
+              Navigator.pushReplacementNamed(
+                context, AppRoutes.homeScreen,
               );
             }
           },
