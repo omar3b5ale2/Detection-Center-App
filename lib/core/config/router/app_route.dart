@@ -26,7 +26,6 @@ class AppRoutes {
     } else if (builder != null) {
       return MaterialPageRoute(builder: builder);
     }
-
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         appBar: AppBar(title: const Text('Page not found')),

@@ -18,7 +18,14 @@ void main() async {
     return;
   }
 
-  runApp(const DetectionCenterApp());
+  runApp(
+    ScreenUtilInit(
+        designSize:
+            Size(AppConstants.figmaDesignWidth, AppConstants.figmaDesignHeight),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => DetectionCenterApp()),
+  );
 }
 
 class DetectionCenterApp extends StatelessWidget {
@@ -32,13 +39,8 @@ class DetectionCenterApp extends StatelessWidget {
         BlocProvider<IntroCubit>(create: (context) => IntroCubit()),
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
       ],
-      child: ScreenUtilInit(
-        designSize:
-            Size(AppConstants.figmaDesignWidth, AppConstants.figmaDesignHeight),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        child: BlocBuilder<ThemeCubit, ThemeState>(
-            builder: (BuildContext context, state) {
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (BuildContext context, state) {
           return MaterialApp(
             title: AppTexts.appName,
             theme: state.themeData,
@@ -47,11 +49,11 @@ class DetectionCenterApp extends StatelessWidget {
               Locale('en', 'US'),
               Locale('ar', 'SA'), // Arabic locale
             ],
-            initialRoute: AppRoutes.splash,
+            initialRoute: AppRoutes.main,
             onGenerateRoute: AppRoutes.generateRoute,
             debugShowCheckedModeBanner: false,
           );
-        }),
+        },
       ),
     );
   }

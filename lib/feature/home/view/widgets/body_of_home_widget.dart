@@ -14,6 +14,7 @@ class BodyOfHomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Dropdown for language selection
@@ -21,6 +22,8 @@ class BodyOfHomeWidget extends StatelessWidget {
           items: [
             DropdownMenuItem(value: 'en_US', child: Text("English")),
             DropdownMenuItem(value: 'ar_SA', child: Text("Arabic")),
+            DropdownMenuItem(value: 'es_ES', child: Text("Spanish")),
+            DropdownMenuItem(value: 'fr_FR', child: Text("French")),
           ],
           onChanged: (value) {
             if (value != null) {
@@ -39,7 +42,9 @@ class BodyOfHomeWidget extends StatelessWidget {
             } else if (speechState is SpeechRecognized) {
               message = speechState.recognizedText;
               if (speechState.recognizedText.contains("what is this") ||
-                  speechState.recognizedText.contains("ما هذا")) {
+                  speechState.recognizedText.contains("ما هذا") ||
+                  speechState.recognizedText.contains("Qué es esto") ||
+                  speechState.recognizedText.contains("Qu’est-ce que c est")) {
                 context.read<DetectionCubit>().detectObjects();
               }
             } else if (speechState is SpeechError) {
@@ -47,7 +52,7 @@ class BodyOfHomeWidget extends StatelessWidget {
             }
             return Text(
               message,
-              style: TextStyle(color: AppColors.text, fontSize: 18.sp),
+              style: TextStyle(color: AppColors.textColorLight, fontSize: 18.sp),
               textAlign: TextAlign.center,
             );
           },
@@ -55,7 +60,8 @@ class BodyOfHomeWidget extends StatelessWidget {
         AppConstants.userVerticalSpace20,
         ElevatedButton(
           onPressed: () => context.read<SpeechCubit>().startListening(),
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.lightBlueGray),
           child: Text("Start Listening"),
         ),
         AppConstants.userVerticalSpace40,
@@ -70,19 +76,19 @@ class BodyOfHomeWidget extends StatelessWidget {
                 children: detectionState.results.map((result) {
                   return Text(
                     "${result['label']} (${(result['confidence'] * 100).toStringAsFixed(2)}%)",
-                    style: TextStyle(color: AppColors.text, fontSize: 16.sp),
+                    style: TextStyle(color: AppColors.textColorLight,fontSize: 16.sp),
                   );
                 }).toList(),
               );
             } else if (detectionState is DetectionError) {
               return Text(
                 detectionState.errorMessage,
-                style: TextStyle(color: AppColors.error),
+                style: TextStyle(color: AppColors.error, fontSize: 16.sp),
               );
             }
             return Text(
               "Awaiting object detection...",
-              style: TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: AppColors.textColorLight, fontSize: 14.sp),
             );
           },
         ),

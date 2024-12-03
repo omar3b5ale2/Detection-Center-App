@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/util/fonts_style.dart';
@@ -28,7 +29,7 @@ class IntroductionPage extends StatelessWidget {
                   child: introductionModel.introductionIconWidget,
                 ),
                 Text(
-                  style: FontsStyle.italicBoldNotoSans(24),
+                  style: FontsStyle.italicBoldNotoSans(24.sp),
                   introductionModel.introductionTitle,
                 ),
                 Padding(
@@ -37,7 +38,7 @@ class IntroductionPage extends StatelessWidget {
                   child: Text(
                     introductionModel.introductionDescription,
                     textAlign: TextAlign.center,
-                    style: FontsStyle.boldDmSerifText(16),
+                    style: FontsStyle.boldDmSerifText(16.sp),
                   ),
                 ),
               ],

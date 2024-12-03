@@ -8,7 +8,7 @@ class AppTheme {
     primaryColorDark: AppColors.accent,
     scaffoldBackgroundColor: AppColors.background,
     appBarTheme: const AppBarTheme(
-      color: AppColors.primary,
+      color: AppColors.lightBlueGray,
       iconTheme: IconThemeData(color: Colors.white),
       titleTextStyle: TextStyle(
         color: Colors.white,
@@ -22,7 +22,7 @@ class AppTheme {
       titleLarge: TextStyle(color: AppColors.primary),
     ),
     buttonTheme: ButtonThemeData(
-      buttonColor: AppColors.accent, // Matches pink accent
+      buttonColor: AppColors.accent,
       textTheme: ButtonTextTheme.primary,
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
