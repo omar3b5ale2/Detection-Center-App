@@ -5,7 +5,7 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 part 'object_detection_state.dart';
 
 class DetectionCubit extends Cubit<DetectionState> {
-  late Interpreter _interpreter;
+  Interpreter? _interpreter;
   DetectionCubit() : super(DetectionInitial());
   // Load model from asset
   Future<void> loadModel() async {
@@ -33,7 +33,7 @@ class DetectionCubit extends Cubit<DetectionState> {
   }
   @override
   Future<void> close() async {
-    _interpreter.close();
+    _interpreter!.close();
     super.close();
   }
 }

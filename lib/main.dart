@@ -49,7 +49,7 @@ class DetectionCenterApp extends StatelessWidget {
               Locale('en', 'US'),
               Locale('ar', 'SA'), // Arabic locale
             ],
-            initialRoute: AppRoutes.main,
+            initialRoute: AppRoutes.splash,
             onGenerateRoute: AppRoutes.generateRoute,
             debugShowCheckedModeBanner: false,
           );
