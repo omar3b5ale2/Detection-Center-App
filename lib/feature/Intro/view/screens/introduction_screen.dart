@@ -5,6 +5,7 @@ import 'package:onboarding/onboarding.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/config/router/app_route.dart';
+import '../../../../core/config/themes/cubit/theme_cubit.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/constants/app_texts.dart';
 import '../../../main_feature/view-model/main_cubit.dart';
@@ -34,11 +35,11 @@ class _IntroductionScreen extends State<IntroductionScreen> {
   int currentIndex = 0;
 
   void onPageChanges(
-    double netDragDistance,
-    int pagesLength,
-    int currentIndex,
-    SlideDirection slideDirection,
-  ) {
+      double netDragDistance,
+      int pagesLength,
+      int currentIndex,
+      SlideDirection slideDirection,
+      ) {
     setState(() {
       this.currentIndex = currentIndex;
     });
@@ -50,50 +51,64 @@ class _IntroductionScreen extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PermissionCubit, PermissionState>(
-      listener: (context, state) {
-        if (state is PermissionGranted) {
-          Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
-        } else if (state is PermissionDenied) {
-          Navigator.pushReplacementNamed(context, AppRoutes.main);
-        }
-      },
-      child: Stack(
-        children: [
-          Onboarding(
-            swipeableBody: pages,
-            onPageChanges: onPageChanges,
-            startIndex: 0,
-          ),
-          SizedBox(
-            width: 1.sw, // Full screen width
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
+    return BlocBuilder<ThemeCubit, ThemeState>(
+      builder: (context, themeState) {
+        final backgroundColor = context.read<ThemeCubit>().getBackgroundColor();
+
+        return Scaffold(
+          backgroundColor: backgroundColor,
+          body: BlocListener<PermissionCubit, PermissionState>(
+            listener: (context, state) {
+              if (state is PermissionGranted) {
+                Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+              } else if (state is PermissionDenied) {
+                Navigator.pushReplacementNamed(context, AppRoutes.main);
+              }
+            },
+            child: Stack(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: AppConstants.paddingBottomIntroScreen.h,
-                  ),
-                  child: currentIndex < pages.length - 1
-                      ? AnimatedSmoothIndicator(
+                Onboarding(
+                  swipeableBody: pages,
+                  onPageChanges: onPageChanges,
+                  startIndex: 0,
+                ),
+                SizedBox(
+                  width: 1.sw, // Full screen width
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          bottom: AppConstants.paddingBottomIntroScreen.h,
+                        ),
+                        child: currentIndex < pages.length - 1
+                            ? AnimatedSmoothIndicator(
                           activeIndex: currentIndex,
                           count: pages.length,
                           effect: const ExpandingDotsEffect(),
                         )
-                      : OutlinedButton(
+                            : OutlinedButton(
                           onPressed: () => _onIntroductionComplete(context),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: themeState.themeData.primaryColorLight),
+                          ),
                           child: Text(
                             AppTexts.endIntroductionPageButtonText,
-                            style: TextStyle(fontSize: 16.sp),
+                            style: themeState.themeData.textTheme.bodyLarge?.copyWith(
+                              fontSize: 16.sp,
+                            ),
                           ),
                         ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

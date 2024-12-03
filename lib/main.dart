@@ -11,21 +11,16 @@ import 'feature/splash/view-model/cubit/splash_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   try {
     await PermissionsManager.requestPermissions();
-  } catch (e) {
+  } catch (e, stackTrace) {
     debugPrint('Permissions error: $e');
+    debugPrint('StackTrace: $stackTrace');
     return;
   }
 
-  runApp(
-    ScreenUtilInit(
-        designSize:
-            Size(AppConstants.figmaDesignWidth, AppConstants.figmaDesignHeight),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) => DetectionCenterApp()),
-  );
+  runApp(const DetectionCenterApp());
 }
 
 class DetectionCenterApp extends StatelessWidget {
@@ -33,27 +28,35 @@ class DetectionCenterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<SplashCubit>(create: (context) => SplashCubit()),
-        BlocProvider<IntroCubit>(create: (context) => IntroCubit()),
-        BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
-      ],
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (BuildContext context, state) {
-          return MaterialApp(
-            title: AppTexts.appName,
-            theme: state.themeData,
-            locale: Locale('en', 'US'), // Default locale
-            supportedLocales: [
-              Locale('en', 'US'),
-              Locale('ar', 'SA'), // Arabic locale
-            ],
-            initialRoute: AppRoutes.splash,
-            onGenerateRoute: AppRoutes.generateRoute,
-            debugShowCheckedModeBanner: false,
-          );
-        },
+    return ScreenUtilInit(
+      designSize: Size(
+        AppConstants.figmaDesignWidth,
+        AppConstants.figmaDesignHeight,
+      ),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => MultiBlocProvider(
+        providers: [
+          BlocProvider<SplashCubit>(create: (_) => SplashCubit()),
+          BlocProvider<IntroCubit>(create: (_) => IntroCubit()),
+          BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
+        ],
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              title: AppTexts.appName,
+              theme: state.themeData,
+              locale: const Locale('en', 'US'), // Default locale
+              supportedLocales: const [
+                Locale('en', 'US'),
+                Locale('ar', 'SA'), // Arabic locale
+              ],
+              initialRoute: AppRoutes.splash,
+              onGenerateRoute: AppRoutes.generateRoute,
+              debugShowCheckedModeBanner: false,
+            );
+          },
+        ),
       ),
     );
   }

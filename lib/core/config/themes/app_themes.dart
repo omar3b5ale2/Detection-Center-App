@@ -19,7 +19,7 @@ class AppTheme {
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: AppColors.textColorLight),
       bodyMedium: TextStyle(color: AppColors.textColorLight),
-      titleLarge: TextStyle(color: AppColors.primary),
+      titleLarge: TextStyle(color: AppColors.textColorLight),
     ),
     buttonTheme: ButtonThemeData(
       buttonColor: AppColors.accent,
