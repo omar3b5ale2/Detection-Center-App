@@ -2,7 +2,7 @@
 class Assets {
   Assets._();
 
-  static const String assetsImagesWelcome = 'assets/images/welcome.png';
+  static const String assetsModelMobilenetV11 = 'assets/model/mobilenet_v1_1.0_224.tflite';
   static const String imagesEye = 'assets/images/eye.png';
   static const String imagesFace = 'assets/images/face.png';
   static const String imagesIcon = 'assets/images/icon.png';

@@ -1,11 +1,22 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tflite_flutter/tflite_flutter.dart';
 
 part 'object_detection_state.dart';
 
 class DetectionCubit extends Cubit<DetectionState> {
+  late Interpreter _interpreter;
   DetectionCubit() : super(DetectionInitial());
-
+  // Load model from asset
+  Future<void> loadModel() async {
+    try {
+      emit(DetectionLoading());
+      _interpreter = await Interpreter.fromAsset('assets/model/mobilenet_v1_1.0_224.tflite');
+      emit(DetectionSuccess([])); // Empty list on initial load
+    } catch (e) {
+      emit(DetectionError('Error loading model: $e'));
+    }
+  }
   Future<void> detectObjects() async {
     try {
       emit(DetectionLoading());
@@ -19,5 +30,10 @@ class DetectionCubit extends Cubit<DetectionState> {
     } catch (e) {
       emit(DetectionError("Unable to detect objects. Try again."));
     }
+  }
+  @override
+  Future<void> close() async {
+    _interpreter.close();
+    super.close();
   }
 }

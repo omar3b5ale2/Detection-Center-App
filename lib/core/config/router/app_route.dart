@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:pyramakerz_assement/feature/home/view/screens/home_screen.dart';
 
 import '../../../feature/Intro/view/screens/introduction_screen.dart';
+import '../../../feature/main_feature/view/main_screen.dart';
 import '../../../feature/splash/view/screens/splash_screen.dart';
 import '../../util/page_transition.dart';
 
 class AppRoutes {
   static const String splash = '/';
   static const String onboarding = '/onboarding';
+  static const String main = '/main_screen';
   static const String homeScreen = '/home_screen';
 
   static final Map<String, WidgetBuilder> routeBuilders = {
     splash: (_) => const SplashScreen(),
     onboarding: (_) => const IntroductionScreen(),
+    main: (_) => const MainScreen(),
     homeScreen: (_) => const HomeScreen(),
   };
 

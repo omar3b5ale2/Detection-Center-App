@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/util/app_colors.dart';
 import '../../../object_detection/view-model/cubit/object_detection_cubit.dart';
 import '../../../speech_to_text/view-model/cubit/speech_to_text_cubit.dart';
@@ -26,8 +27,7 @@ class BodyOfHomeWidget extends StatelessWidget {
           },
           hint: Text("Select Language"),
         ),
-        SizedBox(height: 20),
-
+        AppConstants.userVerticalSpace20,
         // Speech recognition UI
         BlocBuilder<SpeechCubit, SpeechState>(
           builder: (context, speechState) {
@@ -50,13 +50,13 @@ class BodyOfHomeWidget extends StatelessWidget {
             );
           },
         ),
-        SizedBox(height: 20),
+        AppConstants.userVerticalSpace20,
         ElevatedButton(
           onPressed: () => context.read<SpeechCubit>().startListening(),
           style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
           child: Text("Start Listening"),
         ),
-        SizedBox(height: 40),
+        AppConstants.userVerticalSpace40,
 
         // Object detection UI
         BlocBuilder<DetectionCubit, DetectionState>(

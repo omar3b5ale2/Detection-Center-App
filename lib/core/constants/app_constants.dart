@@ -34,6 +34,7 @@ class AppConstants {
   static SizedBox userVerticalSpace30 = 30.h.verticalSpace;
   static SizedBox userVerticalSpace60 = 60.h.verticalSpace;
   static SizedBox userVerticalSpace20 = 20.h.verticalSpace;
+  static SizedBox userVerticalSpace40 = 40.h.verticalSpace;
   static double userElevation2 = 4.w;
   static double userElevation1 = 10.w;
   static BorderRadius materialUserCircularDefault = BorderRadius.circular(6.w);

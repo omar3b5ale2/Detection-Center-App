@@ -6,10 +6,20 @@ import 'core/config/themes/app_themes.dart';
 import 'core/config/themes/cubit/theme_cubit.dart';
 import 'core/constants/app_constants.dart';
 import 'core/constants/app_texts.dart';
+import 'core/handler/permission_manager.dart';
 import 'feature/Intro/view-model/cubit/intro_cubit.dart';
 import 'feature/splash/view-model/cubit/splash_cubit.dart';
 
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await PermissionsManager.requestPermissions();
+  } catch (e) {
+    debugPrint('Permissions error: $e');
+    return;
+  }
+
   runApp(const DetectionCenterApp());
 }
 
@@ -33,6 +43,11 @@ class DetectionCenterApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: context.watch<ThemeCubit>().state,
+          locale: Locale('en', 'US'), // Default locale
+          supportedLocales: [
+            Locale('en', 'US'),
+            Locale('ar', 'SA'), // Arabic locale
+          ],
           initialRoute: AppRoutes.splash,
           onGenerateRoute: AppRoutes.generateRoute,
           debugShowCheckedModeBanner: false,
@@ -41,16 +56,3 @@ class DetectionCenterApp extends StatelessWidget {
     );
   }
 }
-// child: BlocBuilder<SplashCubit, SplashState>(
-// builder: (context, state) {
-// if (state is SplashInitialized) {
-// return const SplashScreen();
-// }
-// final introductionState = context.watch<IntroCubit>().state;
-// if (introductionState is IntroductionInitialized) {
-// return const IntroductionScreen();
-// }
-//
-// return const HomeScreen();
-// },
-// ),
