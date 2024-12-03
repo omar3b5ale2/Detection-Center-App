@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pyramakerz_assement/core/config/router/app_route.dart';
 import 'package:pyramakerz_assement/feature/splash/Model/splash_model.dart';
 
@@ -49,19 +50,18 @@ class _SplashIcon extends State<SplashIcon>
   @override
   Widget build(BuildContext context) {
     return OrientationBuilder(builder: (context, orientation) {
-      Size screenSize = MediaQuery.of(context).size;
-      double iconWidth = (orientation.name == "landscape"
-          ? screenSize.height
-          : screenSize.width);
+      double screenWidth = orientation == Orientation.landscape
+          ? ScreenUtil().screenHeight
+          : ScreenUtil().screenWidth;
 
-      animatedWidth = Tween<double>(begin: -iconWidth, end: 0).animate(
+      animatedWidth = Tween<double>(begin: -screenWidth, end: 0).animate(
         CurvedAnimation(
             parent: animationController, curve: Curves.fastLinearToSlowEaseIn),
       );
 
-      iconWidth = (iconWidth / 2) + animatedWidth.value;
+      double iconWidth = (screenWidth / 2) + animatedWidth.value;
 
-      return Image.asset(splashModel.splashScreenIcon, width: iconWidth);
+      return Image.asset(splashModel.splashScreenIcon, width: iconWidth.w);
     });
   }
 }

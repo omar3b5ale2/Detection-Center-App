@@ -29,7 +29,6 @@ class _CustomAppBarState extends State<CustomAppBar>
       curve: Curves.easeInOut,
     );
 
-    // Trigger the fade animation after the widget is built
     SchedulerBinding.instance.addPostFrameCallback((_) {
       _fadeController.forward();
     });
@@ -44,7 +43,7 @@ class _CustomAppBarState extends State<CustomAppBar>
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true, // Ensures the title/logo is in the center
+      centerTitle: true,
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       title: FadeTransition(
         opacity: _fadeAnimation,
