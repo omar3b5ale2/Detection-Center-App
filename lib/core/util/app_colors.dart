@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static const Color background = Color(0xFFEAF0FF); // Light blue for background
+  static const Color darkBackground = Color(0xFF1A1A2E); // Dark theme background
+
+  // Additional UI Colors
+  static const Color textColorLight = Color(0xFF333333); // Text for light theme
+  static const Color textColorDark = Color(0xFFEFEFEF); // Text for dark theme
+  static const Color primary = Color(0xFF7B61FF); // Purple shade
+  static const Color accent = Color(0xFFFF61CF); // Pink shade
+
+
   static const Color pinky = Color(0xFFDA77F2);
   static const Color secondary = Color(0xFF6C63FF);
   static const Color text2 = Color(0xFF333333);
   static const Color textSecondary2 = Color(0xFF888888);
-  static const Color primary = Color(0xFF9C27B0); //=> main
-  static const Color accent = Color(0xFF6495ED); //=> main
   static const Color primaryColor = Color(0xffde87da);
   static const Color purple = Color(0xFF800080);
   static const Color magenta = Color(0xFFFF00FF);
   static const Color text = Color(0xFF4a148c);
   static const Color textSecondary = Color(0xFF9575cd);
   static const Color error = Color(0xFFd32f2f);
-  static const Color background = Color(0xFFF0F0F0);
   static const Color secondaryColor = Color(0xff72cef8);
   static const Color darkBrown = Color(0xFF17071d);
   static const Color darkPlum = Color(0xFF160d25);

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/config/router/app_route.dart';
 import 'core/config/themes/app_themes.dart';
-import 'core/config/themes/cubit/theme_cubit.dart';
 import 'core/constants/app_constants.dart';
 import 'core/constants/app_texts.dart';
 import 'core/handler/permission_manager.dart';
@@ -42,7 +41,6 @@ class DetectionCenterApp extends StatelessWidget {
           title: AppTexts.appName,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
-          themeMode: context.watch<ThemeCubit>().state,
           locale: Locale('en', 'US'), // Default locale
           supportedLocales: [
             Locale('en', 'US'),
