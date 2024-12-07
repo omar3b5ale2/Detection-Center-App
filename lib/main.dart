@@ -7,6 +7,7 @@ import 'core/constants/app_constants.dart';
 import 'core/constants/app_texts.dart';
 import 'core/handler/permission_manager.dart';
 import 'feature/Intro/view-model/cubit/intro_cubit.dart';
+import 'feature/main_feature/view-model/main_cubit.dart';
 import 'feature/splash/view-model/cubit/splash_cubit.dart';
 
 void main() async {
@@ -40,6 +41,7 @@ class DetectionCenterApp extends StatelessWidget {
           BlocProvider<SplashCubit>(create: (_) => SplashCubit()),
           BlocProvider<IntroCubit>(create: (_) => IntroCubit()),
           BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
+          BlocProvider<PermissionCubit>(create: (_) => PermissionCubit()),
         ],
         child: BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
