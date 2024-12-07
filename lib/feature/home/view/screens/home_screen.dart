@@ -13,16 +13,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      // AppBar(
-      //  leading: Center(child: Image.asset(Assets.imagesLogo)),
-      //   backgroundColor: AppColors.primary,
-      // ),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => SpeechCubit()),
           BlocProvider(create: (_) => DetectionCubit()),
         ],
-        child: BodyOfHomeWidget(),
+        child: Center(child: BodyOfHomeWidget()),
       ),
     );
   }

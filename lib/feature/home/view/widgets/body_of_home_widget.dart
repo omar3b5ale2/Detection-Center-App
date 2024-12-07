@@ -392,7 +392,12 @@ class BodyOfHomeWidget extends StatelessWidget {
                   themeState is ThemeLightState
                       ? "Switch to Dark Theme"
                       : "Switch to Light Theme",
-                  style: TextStyle(fontSize: 16.sp),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: themeState is ThemeLightState
+                        ? AppColors.textColorLight
+                        : AppColors.textColorDark,
+                  ),
                 ),
               ),
             ],

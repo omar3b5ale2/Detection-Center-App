@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pyramakerz_assement/core/config/router/app_route.dart';
+import 'package:pyramakerz_assement/core/util/app_colors.dart';
 import 'package:pyramakerz_assement/feature/splash/Model/splash_model.dart';
 import 'package:pyramakerz_assement/core/config/themes/cubit/theme_cubit.dart';
 
@@ -76,16 +77,21 @@ class _SplashIconState extends State<SplashIcon>
 
             double iconWidth = (screenWidth / 2) + animatedWidth.value;
 
-            return Container(
-              color: themeState
-                  .themeData.scaffoldBackgroundColor, // Use theme background
-              child: Center(
-                child: Image.asset(
-                  splashModel.splashScreenIcon,
-                  width: iconWidth.w,
+            return BlocBuilder<ThemeCubit, ThemeState>(
+                builder: (BuildContext context, ThemeState state) {
+              return Container(
+                color: state is ThemeLightState
+                    ? AppColors.background
+                    : AppColors.darkBackground,
+// Use theme background
+                child: Center(
+                  child: Image.asset(
+                    splashModel.splashScreenIcon,
+                    width: iconWidth.w,
+                  ),
                 ),
-              ),
-            );
+              );
+            });
           },
         );
       },
